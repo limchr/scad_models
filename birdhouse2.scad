@@ -1,6 +1,7 @@
 
-print_base = true;
+print_base = false;
 print_top = false;
+print_holder = true;
 
 //fillet = 10;
 //
@@ -39,8 +40,8 @@ print_top = false;
 fillet = 10;
 
 radius_bottom_inner = 80;
-r = 105;
-r_roof = 110;
+r = 115;
+r_roof = 120;
 
 radius_pole = 40;
 
@@ -54,8 +55,8 @@ s = 2;
 
 width_feeder_holes = 40;
 
-width_roof_holes = 20;
-
+width_roof_holes = 17;
+roof_holes_support_width = 2;
 //for unperfectness in print, change to a small number
 margin = 2;
 
@@ -114,7 +115,7 @@ if(print_base) {
         for(variable = [0 : 90 : 360])
             rotate([0,0,variable])
         translate([-width_roof_holes/2,0,h-width_roof_holes*2])rotate([90,0,0])linear_extrude(500)
-        polygon(points=[[0,0],[width_roof_holes*2+margin,0],[width_roof_holes*2+margin,width_roof_holes*2],[width_roof_holes,width_roof_holes*2],[width_roof_holes,width_roof_holes],[width_roof_holes/2,width_roof_holes*1.5],[0,width_roof_holes]]);
+        polygon(points=[[0,0],[width_roof_holes*2+margin,0],[width_roof_holes*2+margin,width_roof_holes*2],[width_roof_holes,width_roof_holes*2],[width_roof_holes,0],[width_roof_holes-roof_holes_support_width,0],[width_roof_holes-roof_holes_support_width,width_roof_holes],[width_roof_holes/2,width_roof_holes*1.5],[0,width_roof_holes]]);
 
     }
 }
@@ -124,7 +125,7 @@ if(print_top) {
         //roof mount rods
         for(variable = [0 : 90 : 360])
             rotate([0,0,variable])
-        translate([-width_roof_holes/2,0,0])rotate([90,0,0])linear_extrude(r_roof-margin)
+        translate([-width_roof_holes/2,0,0])rotate([90,0,0])linear_extrude(r_roof-s/2)
         polygon(points=[[0,0],[width_roof_holes,0],[width_roof_holes,width_roof_holes/2-margin],[width_roof_holes/2,width_roof_holes-margin],[0,width_roof_holes/2-margin]]);
 
         //main roof
@@ -146,4 +147,18 @@ if(print_top) {
         cylinder(roof_height,width_roof_hang+s,width_roof_hang+s);
 
     }
+}
+
+holder_r = 30;
+holder_screw_r = 2;
+holder_ring_r = 10;
+
+translate([200,0,0]) if(print_holder) {
+    difference(){
+        cylinder(s,holder_r,holder_r);
+        translate([holder_r/1.5,0,0])cylinder(s,holder_screw_r,holder_screw_r);
+        translate([-holder_r/1.5,0,0])cylinder(s,holder_screw_r,holder_screw_r);
+    }
+            rotate([90,0,90])rotate_extrude(angle=180) translate([holder_r-holder_ring_r,0,0])circle(holder_ring_r);
+
 }
