@@ -1,3 +1,7 @@
+print_left = false;
+print_right = false;
+print_inner_holder = true;
+
 height = 15;
 ff_width = 16.63;
 ff_height = 18.63;
@@ -6,8 +10,7 @@ side_w_left = 50;
 side_w_right = 30;
 numw = 10;
 numl = 30;
-print_left = true;
-print_right = false;
+
 
 usb_w = 10;
 usb_h = 6;
@@ -24,6 +27,14 @@ width = (numw)*ff_height;
 length = (numl)*ff_width;
 
 overlap = 3;
+
+
+holder_r_top = 7;
+holder_r_bottom = 9;
+holder_h = 13;
+holder_inner_r = 2.2;
+holder_nut_r = 4.3;
+holder_roof_h = 2;
 
 difference(){
     union(){
@@ -77,4 +88,13 @@ echo([width-s,length+side_w_left+side_w_right-3*s,overlap]);
 echo("frontplate dimensions");
 echo([width+s,length+side_w_left+side_w_right-s,overlap]);
 
+translate([-200,0,0])if(print_inner_holder) {
+    difference(){
+        cylinder(holder_h, holder_r_bottom,holder_r_top, $fn=20);
+        cylinder(100, holder_inner_r, holder_inner_r, $fn=20);
+        cylinder(holder_h-holder_roof_h,holder_nut_r*1.2, holder_nut_r, $fn=6);
+        
+        }
+    
+}
 
