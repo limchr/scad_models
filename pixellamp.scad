@@ -1,7 +1,7 @@
 print_left = false;
 print_right = false;
-print_inner_holder = true;
-
+print_inner_holder = false;
+print_wall_holder = true;
 height = 15;
 ff_width = 16.63;
 ff_height = 18.63;
@@ -35,6 +35,17 @@ holder_h = 13;
 holder_inner_r = 2.2;
 holder_nut_r = 4.3;
 holder_roof_h = 2;
+
+
+if(print_wall_holder) {
+    difference() {
+    cube([30,5,30]);
+    translate([12,0,0]) cube([6,2,20]);
+    translate([12,2,0]) cube([6,2,25]);
+
+        }
+    }
+
 
 difference(){
     union(){

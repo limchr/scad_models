@@ -1,6 +1,6 @@
 //variables
 
-with_base = false;
+with_base = true;
 with_roof = true;
 
 with_support = true;

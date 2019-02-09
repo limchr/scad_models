@@ -3,7 +3,7 @@ include <roundedcube.scad>;
 
 $fn = 50;
 
-print_bottom = true;
+print_bottom = false;
 print_mid = false;
 print_mid_top = false;
 print_top = false;
@@ -11,7 +11,7 @@ print_baseplate = false;
 print_baseplate_2 = false;
 print_baseplate_round = false;
 print_visualizations = false;
-
+print_wheel = true;
 
 l1_h = 68;
 l2_h = 60;
@@ -68,6 +68,43 @@ wheel_w = 20;
 wheel_r = front_wheel_height+s+servo_h/2;
 wheel_margin = 8; // margin for wheel holes
 wheel_whole_offset_y = 4;
+wheel_inner_hole_r = 10.4+eps;
+
+
+if(print_wheel){
+    translate([-300,0,0]) {
+        difference() {
+            cylinder(wheel_w,wheel_r,wheel_r);
+            
+            //hole for servo
+            translate([0,0,0])cylinder(s,wheel_inner_hole_r,wheel_inner_hole_r);
+            
+            //hollow wheel
+            translate([0,0,2*s])cylinder(wheel_w-s*2,wheel_r*0.5,wheel_r*0.9);
+            
+            //tire profile
+            for(deg = [0 : 10 : 360]) {
+                rotate([0,0,deg]) translate([wheel_r-3,0,0]) cube([3,3,wheel_w]);
+            }
+            //inner wheel holes
+            for(deg = [0 : 45 : 360]) {
+                rotate([0,0,deg]) translate([15,0,0]) rotate([0,0,0]) linear_extrude(wheel_w) polygon([[0,-2.5],[20,-4],[20,4], [0,2.5]]);
+                }
+                for(ph = [3, wheel_w/2, wheel_w-3]) {
+            difference(){
+                translate([0,0,ph-0.5])cylinder(1,wheel_r,wheel_r);
+                translate([0,0,ph-0.5])cylinder(1,wheel_r-0.5,wheel_r-0.5);
+                }
+            }
+            
+            
+        }
+        difference(){
+        translate([0,0,-2*s])sphere(wheel_r/2.5);
+        translate([0,0,-100+2*s])cylinder(100,100,100);
+            }
+            }
+}
 
 module servo() {
     cube([servo_l, servo_w, servo_h]);
