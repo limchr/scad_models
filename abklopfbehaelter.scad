@@ -3,7 +3,7 @@ height = 100;
 thick = 5;
 rodthick = 30;
 rodthick_inner = 34;
-printBase = false;
+printBase = true;
 printRod = true;
 
 if(printBase) {

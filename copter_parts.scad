@@ -1,9 +1,9 @@
-print_top = false;
-print_base = false;
-print_arm = false;
+print_top = true;
+print_base = true;
+print_arm = true;
 print_bottom = true;
-print_battery_holder = false;
-print_support_sticks = false;
+print_battery_holder = true;
+print_support_sticks = true;
 
 
 support_stick_width = 20;

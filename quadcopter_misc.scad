@@ -1,4 +1,4 @@
-fc_holder = false;
+fc_holder = true;
 fc_holder_bottom = true;
 
 fc_hole_r = 1.5;
