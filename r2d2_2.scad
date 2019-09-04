@@ -3,13 +3,13 @@ include <roundedcube.scad>;
 
 $fn = 50;
 
-print_bottom = false;
-print_mid = false;
-print_mid_top = false;
-print_top = false;
-print_baseplate = false;
-print_baseplate_2 = false;
-print_baseplate_round = false;
+print_bottom = true;
+print_mid = true;
+print_mid_top = true;
+print_top = true;
+print_baseplate = true;
+print_baseplate_2 = true;
+print_baseplate_round = true;
 print_visualizations = false;
 print_wheel = true;
 
