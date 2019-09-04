@@ -1,20 +1,34 @@
+//make it a bit smoother
+$fn = 30;
+
+//height
 h = 40;
+
+//depth (hook length)
 d = 20;
+
+//strengt
 s = 6;
 
 //hook height
 hh = h/2.5;
 
-$fn = 20;
 
+//width
 w = 15;
+//width at the hook head
 w2 = 4;
 
+//angle that narrowes the hook
 ang = 18.9;
 
+//screw hole radius
 hole_r = 2.2;
+//screw head radius
 hole_r2 = 4;
+//screw head height
 hole_h2 = 2.7;
+//screw hole position
 hole_h = h - hole_r - s;
 
 
