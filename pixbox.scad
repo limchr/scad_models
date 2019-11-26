@@ -29,6 +29,8 @@ printer_y = l-printer_l-30;
 power_port_x = 30;
 
 
+hanging_hole_r = 3;
+
 cam_w = 25;
 cam_l = 25;
 cam_h = 7;
@@ -160,9 +162,22 @@ if(print_rear) translate([l+w,0,s])rotate([0,180,0])
             box(l,w,s);
                     }
                     
-            translate([h_m,h_m,-s]) cylinder(2*s, h_i,h_i);
-            translate([w-h_m,l-h_m,-s]) cylinder(2*s, h_i,h_i);
-    }
+            translate([h_m,h_m,-s]) {
+                cylinder(2*s, h_i,h_i);
+                translate([0,0,s])cylinder(s, h_i, h_i+2);
+            }
+            translate([w-h_m,l-h_m,-s]) {
+                cylinder(2*s, h_i,h_i);
+                translate([0,0,s])cylinder(s, h_i, h_i+2);
+            }
+    
+            translate([w/4,l/4,-s]) cylinder(s*2, hanging_hole_r, hanging_hole_r);
+            translate([3*w/4,l/4,-s]) cylinder(s*2, hanging_hole_r, hanging_hole_r);
+            
+            }
+    
+    
+    
     if(print_button) rotate([180,0,0]){
         cube([switch_w-eps,switch_w-eps,s*2],center=true);
         translate([0,0,s])cube([switch_w-eps+2*s,switch_w-eps+2*s,s],center=true);
