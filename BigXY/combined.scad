@@ -11,7 +11,7 @@ screw_h = 4;
 
 xy_mount_y = 200;
 xy_mount_h = 5;
-pulley_y23_dist = carriage_w + pulleys_inner_dia + 5;
+pulley_y23_dist = carriage_w + pulleys_inner_dia + 15;
 xy_mount_w = carriage_l + 40;
 xy_mount_l = 80;
 
@@ -108,7 +108,7 @@ translate([pulley_x2,pulley_y3,carriage_z_offset+carriage_h]) cylinder(100, 5/2,
 
 //carriage_xy_mount ends here
 
-x_mount_x = 150;
+x_mount_x = 100;
 x_mount_y = xy_mount_y+xy_mount_w/2-carriage_w/2;
 x_mount_z = railandcarriage_h + xy_mount_h/2 + 20 + railandcarriage_h;
 
@@ -123,7 +123,7 @@ translate([x_mount_x,x_mount_y,x_mount_z - carriage_h])carriage();
 
 x_mount_h = 50;
 x_mount_s = 5;
-x_mount_w = carriage_w + 20;
+x_mount_w = pulley_y23_dist - 2 - x_mount_s*2 - 2;
 
 difference() {
 
@@ -144,6 +144,12 @@ translate([x_mount_x+carriage_hole_x_margin,x_mount_y+carriage_hole_y_margin,x_m
 
 
 }
+
+translate([x_mount_x+10,x_mount_y-500,pulley_z1]) cube([5,1000,9]);
+translate([x_mount_x+10,x_mount_y-500,pulley_z2]) cube([5,1000,9]);
+
+translate([x_mount_x+carriage_l-15,x_mount_y-500,pulley_z1]) cube([5,1000,9]);
+translate([x_mount_x+carriage_l-15,x_mount_y-500,pulley_z2]) cube([5,1000,9]);
 
 }
 
