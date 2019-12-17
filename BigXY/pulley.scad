@@ -1,7 +1,4 @@
-pulleys_inner_dia = 12;
-pulleys_outer_dia = 18;
-pulleys_screw_dia = 5;
-pulleys_h = 9;
+include<globals.scad>
 
 module pulley(){
     difference(){

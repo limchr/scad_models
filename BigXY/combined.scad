@@ -1,34 +1,12 @@
+include<globals.scad>
+
 include<profile2020.scad>
 include<nema17.scad>
 include<pulley.scad>
 include<rail.scad>
 include<tronxy_x5s.scad>
 
-eps = 0.2;
 
-belt_w = 1;
-screw_h = 4;
-
-xy_mount_y = 200;
-xy_mount_h = 5;
-pulley_y23_dist = carriage_w + pulleys_inner_dia + 15;
-xy_mount_w = carriage_l + 40;
-xy_mount_l = 80;
-
-pulley_x1 = nema17_l/2;
-pulley_x2 = nema17_l/2 + pulleys_inner_dia + 1;
-
-pulley_z1 = railandcarriage_h + xy_mount_h + screw_h;
-pulley_z2 = pulley_z1 + pulleys_h + screw_h;
-
-
-pulley_y1 = nema17_w/2;
-pulley_y2 = xy_mount_y + xy_mount_w/2 - pulley_y23_dist/2;
-pulley_y3 = xy_mount_y + xy_mount_w/2 + pulley_y23_dist/2;
-pulley_y4 = profiles_short + 2*20 + nema17_l/2;
-
-carriage_screw_dia = 3;
-carriage_screw_head_dia = 4;
 
 
 include<edge.scad>

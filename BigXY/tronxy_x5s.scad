@@ -1,7 +1,4 @@
-profiles_long = 530;
-profiles_short = 460;
-profiles_vertical = 530;
-
+include<globals.scad>
 
 module tronxy_x5s_cage(print_only_top=false) {
     translate([0,0,0])rotate([0,90,0])profile2020(profiles_long);
