@@ -3,6 +3,23 @@ eps = 0.2;
 
 $fn = 100;
 
+
+//screws
+
+m4_screw_r = 4/2;
+m4_addition = 0.5;
+m4_hole_r = m4_screw_r + m4_addition + eps;
+m4_head_h = 4;
+m4_head_r = 7/2;
+
+
+m5_screw_r = 5/2;
+m5_addition = 0.5;
+m5_hole_r = m5_screw_r + m5_addition + eps;
+m5_head_h = 5;
+m5_head_r = 8/2;
+
+
 //tronxy cage variables
 profiles_long = 530;
 profiles_short = 460;
@@ -49,7 +66,7 @@ carriage_w = 27;
 carriage_h = 10;
 carriage_hole_distance = 20;
 carriage_screw_dia = 3;
-carriage_screw_head_dia = 4;
+carriage_screw_head_dia = 5;
 
 
 carriage_hole_x_margin = (carriage_l - carriage_hole_distance)/2;

@@ -37,7 +37,7 @@ translate([carriage_w+carriage_x, xy_mount_y,carriage_z_offset]) {
     
 
 module carriage_screw_hole() {
-cylinder(xy_mount_h,carriage_screw_dia/2,carriage_screw_dia/2); translate([0,0,xy_mount_h/2]) cylinder(xy_mount_h,carriage_screw_head_dia/2,carriage_screw_head_dia/2);
+cylinder(xy_mount_h,carriage_screw_dia/2+eps,carriage_screw_dia/2+eps); translate([0,0,xy_mount_h/2]) cylinder(xy_mount_h,carriage_screw_head_dia/2+eps,carriage_screw_head_dia/2+eps);
     }
 
 
@@ -76,8 +76,8 @@ translate([carriage_x, xy_mount_y,carriage_z_offset]) {
 }
 
 //holes for pulleys
-translate([pulley_x2,pulley_y2,carriage_z_offset+carriage_h]) cylinder(100, 5/2,5/2);
-translate([pulley_x2,pulley_y3,carriage_z_offset+carriage_h]) cylinder(100, 5/2,5/2);
+translate([pulley_x2,pulley_y2,carriage_z_offset+carriage_h]) cylinder(100, m5_hole_r,m5_hole_r);
+translate([pulley_x2,pulley_y3,carriage_z_offset+carriage_h]) cylinder(100, m5_hole_r,m5_hole_r);
 
 
 }
