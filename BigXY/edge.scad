@@ -1,14 +1,17 @@
-$fn = 5;
-edge_s = 8;
+include<globals.scad>
+
+
+//$fn = 5;
+edge_s = railandcarriage_h + 5;
+edge_s_side = 5;
 edge_l = 42;
 edge_w = 42;
-include<globals.scad>
 
 //cutout for rail
 edge_cutout_rail_l = 17;
 
 //height of pulley screw heads
-edge_s_h = 5.5;
+edge_s_h = edge_s - 6;
 
 //dia of pulley screw heads
 edge_s_hd = 10;
@@ -34,9 +37,9 @@ module edge() {
             sr_cube([edge_l,edge_w,edge_s],radius=10,corners=[0,0,1,0]);
             
             //side aligners
-            translate([-edge_s,-edge_s,-20]) {
-                cube([edge_l+edge_s,edge_s,20+edge_s]);
-                cube([edge_s,edge_w+edge_s,20+edge_s]);
+            translate([-edge_s_side,-edge_s_side,-20]) {
+                cube([edge_l+edge_s_side,edge_s_side,20+edge_s]);
+                cube([edge_s_side,edge_w+edge_s_side,20+edge_s]);
             }
             
             //pulley platforms (offsets)
@@ -54,7 +57,10 @@ module edge() {
         translate([(20-rail_w)/2-eps,edge_w-edge_cutout_rail_l,0]) cube([rail_w+2*eps,edge_cutout_rail_l,edge_s]);
         
         //cutoffs for mounting holes
-        translate([edge_l-10,10,0]) cylinder(edge_s,m4_hole_r,m4_hole_r);
+        translate([edge_l-10,10,0]){ cylinder(edge_s,m4_hole_r,m4_hole_r);
+        translate([0,0,5]) cylinder(edge_s,4,4);
+            
+            }
         translate([25,-edge_s,-10]) rotate([-90,0,0])cylinder(edge_s,m4_hole_r,m4_hole_r);
         translate([0,25,-10]) rotate([0,-90,0])cylinder(edge_s,m4_hole_r,m4_hole_r);
     }

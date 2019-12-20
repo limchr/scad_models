@@ -6,6 +6,13 @@ $fn = 100;
 
 //screws
 
+m3_screw_r = 3/2;
+m3_addition = 0.5;
+m3_hole_r = m3_screw_r + m3_addition + eps;
+m3_head_h = 4;
+m3_head_r = 7/2;
+
+
 m4_screw_r = 4/2;
 m4_addition = 0.5;
 m4_hole_r = m4_screw_r + m4_addition + eps;
@@ -66,7 +73,7 @@ carriage_w = 27;
 carriage_h = 10;
 carriage_hole_distance = 20;
 carriage_screw_dia = 3;
-carriage_screw_head_dia = 5;
+carriage_screw_head_dia = 6;
 
 
 carriage_hole_x_margin = (carriage_l - carriage_hole_distance)/2;
@@ -100,3 +107,10 @@ pulley_y2 = xy_mount_y + xy_mount_w/2 - pulley_y23_dist/2;
 pulley_y3 = xy_mount_y + xy_mount_w/2 + pulley_y23_dist/2;
 pulley_y4 = profiles_short + 2*20 + nema17_l/2;
 
+
+carriage_x = (20-rail_w)/2 - (carriage_w - rail_w) / 2 ;
+
+
+module carriage_screw_hole() {
+cylinder(xy_mount_h,carriage_screw_dia/2+eps,carriage_screw_dia/2+eps); translate([0,0,xy_mount_h/2]) cylinder(xy_mount_h,carriage_screw_head_dia/2+eps,carriage_screw_head_dia/2+eps);
+    }
