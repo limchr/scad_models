@@ -7,7 +7,7 @@ psu_l = 250;
 psu_w = 150;
 psu_h = 40;
 
-eps = 0.3;
+eps = 0.2;
 s = 3;
 
 
@@ -33,6 +33,13 @@ front_feet_distance = l_front_total - 2*feet_margin;
 
 back_feet_distance = l_back + s - 2*feet_margin;
 
+
+c13_h = 28;
+c13_w = 49;
+c13_hole_distance = 40;
+c13_hole_r = 3/2 + eps; 
+c13_y = 100;
+c13_z = psu_h/2;
 
 
 module feet() {
@@ -69,16 +76,28 @@ difference(){
 
     union(){
         if(print_front) {
-            translate([l_front,-s,-s]) rotate([0,-90,0]) sr_cube([psu_h+2*s, psu_w+2*s, l_front_total], radius=edge_dia/2, corners=[0,1,1,0]);
+            difference() {
+                union(){
+                    translate([l_front,-s,-s]) rotate([0,-90,0]) sr_cube([psu_h+2*s, psu_w+2*s, l_front_total], radius=edge_dia/2, corners=[0,1,1,0]);
+                    
+                    //feets//
+                    translate([-l_front_addition+feet_margin,-feet_w/2,-s]) feet();
+                    translate([-l_front_addition+feet_margin+front_feet_distance,-feet_w/2,-s]) feet();
+
+                    translate([-l_front_addition+feet_margin,psu_w+feet_w/2,-s]) rotate([0,0,180])feet();
+                    translate([-l_front_addition+feet_margin+front_feet_distance,psu_w+feet_w/2,-s]) rotate([0,0,180])feet();
+                }
+
+            //c13 power input (get dimensions from plug thing with switch and fuse
+            translate([-l_front_addition,c13_y-c13_w/2,c13_z-c13_h/2]) {
+                cube([s,c13_w,c13_h]);
+            }
+            translate([-l_front_addition,c13_y,c13_z+c13_hole_distance/2])  rotate([0,90,0]) cylinder(l_front_addition-s,c13_hole_r,c13_hole_r); 
+            translate([-l_front_addition,c13_y,c13_z-c13_hole_distance/2])  rotate([0,90,0]) cylinder(l_front_addition-s,c13_hole_r,c13_hole_r); 
             
-            translate([-l_front_addition+feet_margin,-feet_w/2,-s]) feet();
-            translate([-l_front_addition+feet_margin+front_feet_distance,-feet_w/2,-s]) feet();
-
-            translate([-l_front_addition+feet_margin,psu_w+feet_w/2,-s]) rotate([0,0,180])feet();
-            translate([-l_front_addition+feet_margin+front_feet_distance,psu_w+feet_w/2,-s]) rotate([0,0,180])feet();
-
-
-            //todo: power input (get dimensions from plug thing with switch and fuse
+            
+            
+        }
             //todo: power output via drone plug
             //todo: power output via 220v, attention: use safe plug or cable
 
