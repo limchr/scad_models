@@ -18,19 +18,25 @@ x_mount_z = railandcarriage_h + xy_mount_h/2 + 20 + railandcarriage_h;
 x_mount_h = 50;
 x_mount_s = 5;
 x_mount_w = pulley_y23_dist - 2 - x_mount_s*2 - 2;
+x_mount_nema_s = 2;
 
 difference() {
 
-translate([x_mount_x,x_mount_y-(x_mount_w-carriage_w)/2,x_mount_z-x_mount_h+x_mount_s-nema17_l-eps]){
+translate([x_mount_x,x_mount_y,x_mount_z])
+
+translate([0,-(x_mount_w-carriage_w)/2,-x_mount_h+x_mount_s-nema17_l-eps]){
     difference(){
         union(){
         sr_cube([carriage_l,x_mount_w,x_mount_h+nema17_l+eps],radius=5);
                 translate([0,x_mount_w-x_mount_s,0])sr_cube([carriage_l,x_mount_s,x_mount_h+nema17_l+20+eps],radius=5,corners=[0,0,1,1]);
+            translate([0,x_mount_w/2,0])cube([carriage_l,x_mount_w/2,nema17_l+eps]);
 
             }
             translate([0,x_mount_s,nema17_l+x_mount_s]) cube([carriage_l,x_mount_w-2*x_mount_s,x_mount_h-x_mount_s*2]);
-        translate([0,0,0])cube([carriage_l,x_mount_w-x_mount_s,nema17_l+eps]);
+    sidew = (carriage_l - nema17_l)/2 - eps;
         
+        translate([sidew,0,0])cube([carriage_l-2*sidew,x_mount_w-x_mount_nema_s,nema17_l+eps]);
+        translate([carriage_l,0,0])rotate([0,-90,0])linear_extrude(carriage_l)polygon([[0,0],[nema17_l+eps,0],[0,x_mount_w-x_mount_s]]);
         
         translate([(carriage_l-nema17_l)/2,0,0]) {
         translate([nema17_screw_margin_x,50,nema17_screw_margin_x]) rotate([90,0,0]) cylinder(100, m3_hole_r, m3_hole_r);
