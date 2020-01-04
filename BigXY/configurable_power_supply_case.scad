@@ -3,12 +3,12 @@ include <../simple_rounded_cube.scad>
 print_back = true;
 print_front = true;
 
-psu_l = 250;
-psu_w = 150;
-psu_h = 40;
+psu_l = 205;
+psu_w = 99;
+psu_h = 38;
 
 eps = 0.2;
-s = 3;
+s = 4;
 
 
 l_back = 50;
@@ -38,9 +38,15 @@ c13_h = 28;
 c13_w = 49;
 c13_hole_distance = 40;
 c13_hole_r = 3/2 + eps; 
-c13_y = 100;
+c13_y = psu_w/3*2;
 c13_z = psu_h/2;
 
+
+xt60_h = 15.735;
+xt60_w = 8.128;
+xt60_e = 3;
+xt60_x = psu_w/3-20;
+xt60_z = psu_h/2;
 
 module feet() {
         translate([-feet_l/2, -feet_w/2,0]) {
@@ -97,9 +103,13 @@ difference(){
             
             
             
-        }
-            //todo: power output via drone plug
+            //power output via drone plug
+                    translate([-l_front_addition,xt60_x-xt60_w/2,xt60_z-xt60_h/2])
+        
+       rotate([90,0,0])rotate([0,90,0]) linear_extrude(s)  polygon([[0,0],[xt60_w,0],[xt60_w,xt60_h-xt60_e],[xt60_w-xt60_e,xt60_h],[xt60_e,xt60_h],[0,xt60_h-xt60_e]]);
+
             //todo: power output via 220v, attention: use safe plug or cable
+        }
 
         }
 
