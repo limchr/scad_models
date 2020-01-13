@@ -21,7 +21,7 @@ h = 130;
 ht = 40;
 
 //water hole dia
-hd = 3;
+hd = 2;
 //number of water holes x
 hx = 20;
 //number of water holes z

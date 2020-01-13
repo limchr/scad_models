@@ -114,3 +114,14 @@ carriage_x = (20-rail_w)/2 - (carriage_w - rail_w) / 2 ;
 module carriage_screw_hole() {
 cylinder(xy_mount_h,carriage_screw_dia/2+eps,carriage_screw_dia/2+eps); translate([0,0,xy_mount_h/2]) cylinder(xy_mount_h,carriage_screw_head_dia/2+eps,carriage_screw_head_dia/2+eps);
     }
+    
+    
+    
+
+//variables for reverse nema holder    
+servo_v_h = 50;
+servo_v_s = 5;
+servo_v_cutout = 22+eps*2;
+//cutout height for screws
+servo_coh = 31;
+

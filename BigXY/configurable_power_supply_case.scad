@@ -1,7 +1,7 @@
 include <../simple_rounded_cube.scad>
 
 print_back = true;
-print_front = true;
+print_front = false;
 
 psu_l = 205;
 psu_w = 99;
