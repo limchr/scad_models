@@ -37,6 +37,10 @@ include<../simple_rounded_cube.scad>
         translate([nema17_w-5,nema17_w-10,0]) cylinder(servo_coh,m3_hole_r,m3_hole_r);
             translate([nema17_w-5,nema17_w-10,servo_v_s]) cylinder(servo_coh,m3_hole_r+2,m3_hole_r+2);
             
+            
+            
+            #translate([-10,-13,-40]) cube([20,20,80]);
+            
         }
     
     }
