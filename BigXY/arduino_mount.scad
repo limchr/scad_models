@@ -1,5 +1,5 @@
-print_bottom = false;
-print_top = true;
+print_bottom = true;
+print_top = false;
 $fn = 100;
 s = 2;
 eps = 0.2;
