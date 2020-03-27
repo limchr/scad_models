@@ -18,7 +18,7 @@ ex_hlower = 40;
 ex_hupper = 30;
 
 ex_hole_dia = 3;
-ex_hole_head_dia = 5;
+ex_hole_head_dia = 6;
 ex_hole_head_depth = ex_depth - 3;
 
 //cable tie holes
@@ -38,7 +38,7 @@ fil_depth = 20;
 fil_hlower = 30;
 fil_hupper = 70;
 
-fil_hole_dia = 4+0.2;
+fil_hole_dia = 4+0.4+0.2;
 fil_hole_head_dia = 8;
 fil_hole_head_depth = fil_depth - 3;
 
@@ -84,4 +84,4 @@ module tube_guide(s, tube_dia, lower_height, upper_height, depth, hole_dia, hole
 
 
 tube_guide(ex_s, tube_dia, ex_hlower, ex_hupper, ex_depth, ex_hole_dia, ex_hole_head_dia, ex_hole_head_depth, ex_num_cth, ex_cth_w, ex_cth_h);
-translate([0,30,0])tube_guide(fil_s, tube_dia, fil_hlower, fil_hupper, fil_depth, fil_hole_dia, fil_hole_head_dia, fil_hole_head_depth, fil_num_cth, fil_cth_w, fil_cth_h, true);
+//translate([0,30,0])tube_guide(fil_s, tube_dia, fil_hlower, fil_hupper, fil_depth, fil_hole_dia, fil_hole_head_dia, fil_hole_head_depth, fil_num_cth, fil_cth_w, fil_cth_h, true);
