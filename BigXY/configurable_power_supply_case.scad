@@ -1,7 +1,10 @@
 include <../simple_rounded_cube.scad>
 
 print_back = true;
-print_front = false;
+print_front = true;
+
+print_back_plugs = false;
+print_side_hole = true;
 
 psu_l = 205;
 psu_w = 99;
@@ -95,7 +98,8 @@ difference(){
                 }
 
             //c13 power input (get dimensions from plug thing with switch and fuse
-            translate([-l_front_addition,c13_y-c13_w/2,c13_z-c13_h/2]) {
+            if(print_back_plugs) {
+                translate([-l_front_addition,c13_y-c13_w/2,c13_z-c13_h/2]) {
                 cube([s,c13_w,c13_h]);
             }
             translate([-l_front_addition,c13_y,c13_z+c13_hole_distance/2])  rotate([0,90,0]) cylinder(l_front_addition-s,c13_hole_r,c13_hole_r); 
@@ -107,8 +111,18 @@ difference(){
                     translate([-l_front_addition,xt60_x-xt60_w/2,xt60_z-xt60_h/2])
         
        rotate([90,0,0])rotate([0,90,0]) linear_extrude(s)  polygon([[0,0],[xt60_w,0],[xt60_w,xt60_h-xt60_e],[xt60_w-xt60_e,xt60_h],[xt60_e,xt60_h],[0,xt60_h-xt60_e]]);
-
-            //todo: power output via 220v, attention: use safe plug or cable
+        }
+        
+        if(print_side_hole) {
+            
+            translate([-l_front_addition/2,
+            s,psu_h/2]) rotate([90,0,0]) cylinder(s*2,5,5);
+            
+            }
+        
+        
+        
+        
         }
 
         }
