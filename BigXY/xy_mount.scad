@@ -44,3 +44,26 @@ translate([pulley_x2,pulley_y3,carriage_z_offset+carriage_h]) cylinder(100, m5_h
 
 
 //carriage_xy_mount ends here
+
+holder_s = 4;
+holder_h = 25;
+screw_r = 3;
+echo(pulley_y3-pulley_y2);
+
+holder_l = pulley_y3-pulley_y2+2*holder_s+2*screw_r;
+holder_w = screw_r*2+2*holder_s;
+
+translate([pulley_x2,pulley_y2-screw_r/2-holder_s, carriage_z_offset+carriage_h+holder_h]) {
+    difference() {
+        union(){
+            sr_cube([holder_w,holder_l, holder_s], radius=3);
+            translate([0,holder_l/2-10,-holder_h]) cube([holder_w,20,holder_h]);
+        }
+        translate([holder_s+screw_r,holder_l/2,-holder_h]) cylinder(holder_s+holder_h,screw_r,screw_r);
+        translate([holder_s+screw_r,holder_s+screw_r,0]) cylinder(holder_s,screw_r,screw_r);
+        translate([holder_s+screw_r,pulley_y3-pulley_y2+holder_s+screw_r,0]) cylinder(holder_s,screw_r,screw_r);
+    }
+}
+
+
+
