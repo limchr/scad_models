@@ -1,6 +1,6 @@
 include <simple_rounded_cube.scad>
 
-$fn = 20;
+$fn = 40;
 
 //printer imprecision (critical parts are printed bigger/smaller by this variable)
 eps = 0.3;

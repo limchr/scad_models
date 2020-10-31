@@ -5,13 +5,13 @@ $fn = 30;
 h = 40;
 
 //depth (hook length)
-d = 20;
+d = 25;
 
 //strengt
 s = 6;
 
 //hook height
-hh = h/2.5;
+hh = h/2.2;
 
 
 //width
