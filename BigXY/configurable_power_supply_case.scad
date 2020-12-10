@@ -1,22 +1,22 @@
 include <../simple_rounded_cube.scad>
 
 print_back = true;
-print_front = true;
+print_front = false;
 
 print_back_plugs = false;
 print_side_hole = true;
 
-psu_l = 205;
-psu_w = 99;
-psu_h = 38;
+psu_l = 210;
+psu_w = 114;
+psu_h = 51;
 
-eps = 0.2;
+eps = 0.3;
 s = 4;
 
 
 l_back = 50;
-l_front = 20;
-l_front_addition = 50;
+l_front = 30;
+l_front_addition = 20;
 l_front_total = l_front + l_front_addition;
 
 edge_dia = 5;
@@ -116,7 +116,9 @@ difference(){
         if(print_side_hole) {
             
             translate([-l_front_addition/2,
-            s,psu_h/2]) rotate([90,0,0]) cylinder(s*2,5,5);
+            s,psu_h/3]) rotate([90,0,0]) cylinder(s*2,5,5);
+            translate([-l_front_addition/2,
+            s,psu_h/3*2]) rotate([90,0,0]) cylinder(s*2,5,5);
             
             }
         
@@ -128,8 +130,10 @@ difference(){
         }
 
         if(print_back) {
-                translate([psu_l+s, -s, -s]) rotate([0,-90,0]) sr_cube([psu_h+2*s,psu_w+2*s,l_back+s], radius=edge_dia/2, corners=[0,1,1,0]);
-
+                difference(){
+                    translate([psu_l+s, -s, -s]) rotate([0,-90,0]) sr_cube([psu_h+2*s,psu_w+2*s,l_back+s], radius=edge_dia/2, corners=[0,1,1,0]);
+                    translate([psu_l-l_back, psu_w-30, s*2]) cylinder(psu_h, 30,30);
+                    }
                 translate([psu_l+s-feet_margin,-feet_w/2,-s]) feet();
                 translate([psu_l+s-feet_margin, psu_w+feet_w/2,-s]) rotate([0,0,180])feet();
 
