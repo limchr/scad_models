@@ -3,7 +3,7 @@
 //
 
 print_outer = true;
-print_inner = true;
+print_inner = false;
 
 
 
@@ -21,15 +21,15 @@ e = 0.3;
 //
 
 //height
-h = 90;
+h = 170*0.81;
 //outer width
-w = 90;
+w = 170*0.81;
 
 //strength of outer walls
 so = 6;
 
 //strength bottom
-sb = 1.5;
+sb = 2;
 
 //number of circle divisions
 nd = 32;
@@ -39,7 +39,7 @@ nv = 8;
 //use radius increment list for custom outer pot shape
 use_custom_radius = true;
 //multiplier for radius increase list (for extremer/less extreme shapes)
-rmu = 10.0;
+rmu = 30.0;
 //radius increments using custom radius
 radius_addition = [0.3*rmu,0.7*rmu, 1.0*rmu, 1.2*rmu, 1.33*rmu, 1.41*rmu, 1.45*rmu, 1.45*rmu, 1.45*rmu, ]; //pod shape
 //radius_addition = [0.3*rmu,0.7*rmu, 1.0*rmu, 1.2*rmu, 1.35*rmu, 1.2*rmu, 1.0*rmu, 0.7*rmu, 0.2*rmu, 0.1*rmu, 0.2*rmu, 0.7*rmu, 1.2*rmu]; //vase shape
@@ -49,7 +49,7 @@ radius_addition = [0.3*rmu,0.7*rmu, 1.0*rmu, 1.2*rmu, 1.33*rmu, 1.41*rmu, 1.45*r
 use_advanced_polygons = true;
 
 //amount of random noise
-rn = 6;
+rn = 12;
 
 //margin inner ring
 mir = 1.5;
