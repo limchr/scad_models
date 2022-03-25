@@ -1,4 +1,4 @@
-$fn = 40;
+$fn = 90;
 
 //printing error
 e = 0.30;
@@ -57,23 +57,57 @@ wsr = 1.5;
 whl = td-rd;
 
 // num screws x
-nsx = 3;
+nsx = 2;
 
 // num screws z
 nsz = 5;
 
-difference() {
-cube([s,td,th]);
-translate([0,rsx,rsy]) rotate([0,90,0])cylinder(s,rsr,rsr);
+//screw hole margin x
+smx = 3*s;
+
+// screw distance x
+sdx = ((whl-smx*2)/(nsx-1));
+
+//screw hole margin x
+smz = 3*s;
+
+// screw distance x
+sdz = ((th-smz*2)/(nsz-1));
+
+
+// wood screw hole
+module wsh(){
+    cylinder(20,wsr,wsr);
+    translate([0,0,s]) cylinder(20,wsr*2,wsr*2);
+    translate([0,0,s/2]) cylinder(s/2,wsr,wsr*2);
 }
 
-translate([s,rd,0]) 
-difference(){
-    cube([20,whl,20+s]);
-    translate([20,0,s+20]) rotate([-90,0,0]) cylinder(whl,20,20);
-    translate([20/2,whl/2,0]) {
-        cylinder(20,wsr,wsr);
-        translate([0,0,s]) cylinder(20,wsr*2,wsr*2);
-        translate([0,0,s/2]) cylinder(s/2,wsr,wsr*2);
+// wood screw holder
+module we(length, width, ns, sd, sm) {
+    difference(){
+        cube([width,length,width+s]);
+        translate([width,0,s+width]) rotate([-90,0,0]) cylinder(length,20,20);
+        for(i = [0:1:ns-1]) {
+            translate([width/2,sm+sd*i,0])  wsh();
         }
+    }
 }
+
+module case(){
+
+difference() {
+    cube([s,td,th]);
+    translate([0,rsx,rsy]) rotate([0,90,0]) cylinder(s,rsr,rsr);
+    translate([0,rsx,th-rsy]) rotate([0,90,0]) cylinder(s,rsr,rsr);
+}
+
+translate([s,rd,0]) we(whl, 20, nsx, sdx, smx);
+translate([s,td,th]) rotate([180,0,0]) we(whl, 20, nsx, sdx, smx);
+translate([s,td,0]) rotate([90,0,0]) we(th, 20, nsz, sdz, smz);
+
+}
+
+
+case();
+
+translate([450,0,0])mirror([1,0,0]) case();
