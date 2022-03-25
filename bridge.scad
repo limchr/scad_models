@@ -1,26 +1,26 @@
-//h = 6.5;
-//h2 = 3;
-//w = 6;
-//num_strings = 4;
-//string_dist = 10;
-//l = 35;
-//string_dias = [0.5588, 0.8636, 0.635, 0.4826];
-//msd = min(string_dias);
-//notch_depth = [2+string_dias[0]-msd,2+string_dias[1]-msd,2+string_dias[2]-msd,2+string_dias[3]-msd];
-//notch_width = 4;
-//notch_angle = 10;
-
-h = 4.5;
-h2 = 2;
+h = 6.5;
+h2 = 3;
 w = 6;
 num_strings = 4;
-string_dist = 38/3;
-l = 62;
+string_dist = 10;
+l = 35;
 string_dias = [0.5588, 0.8636, 0.635, 0.4826];
 msd = min(string_dias);
-notch_depth = [2+string_dias[3]-msd,2+string_dias[2]-msd,2+string_dias[1]-msd,2+string_dias[0]-msd];
+notch_depth = [2+string_dias[0]-msd,2+string_dias[1]-msd,2+string_dias[2]-msd,2+string_dias[3]-msd];
 notch_width = 4;
 notch_angle = 10;
+
+//h = 4.5;
+//h2 = 2;
+//w = 6;
+//num_strings = 4;
+//string_dist = 38/3;
+//l = 62;
+//string_dias = [0.5588, 0.8636, 0.635, 0.4826];
+//msd = min(string_dias);
+//notch_depth = [2+string_dias[3]-msd,2+string_dias[2]-msd,2+string_dias[1]-msd,2+string_dias[0]-msd];
+//notch_width = 4;
+//notch_angle = 10;
 
 
 

@@ -1,16 +1,20 @@
-//inner width
-iw = 500;
 
 //strength of wood
-s = 16;
+s = 18;
 
 num_rows = 3;
 num_floors = num_rows+1;
 
 module_h = 128.5;
 
+hp = 5.08;
 
-oh = s + num_rows*(s + module_h);
+//inner width
+iw = 100 * hp;
+
+add_v = 1;
+
+oh = s + num_rows*(s + module_h+add_v);
 
 ow = iw + 2*s;
 d = 200;
@@ -34,7 +38,7 @@ echo("##################");
 echo("(2x) sides: ",oh,"x",d);
 echo("(",num_floors,"x) floors: ",iw,"x",d);
 echo("backplate: ",ow,"x",oh);
-echo("(2x) module_covers: ",iw,"x",module_h);
+echo("(2x) module_covers: ",iw-1,"x",module_h-0.5);
 
 
 echo("##################");
