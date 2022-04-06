@@ -563,4 +563,468 @@ module usb_module() {
         
     }
 }
-usb_module();
+
+phones = [[-0.8914324235124365,6.918813563213112],[-1.308364711001103,6.804744661890141],[-1.6094824741873635,6.736303321096359],[-2.0495776665365115,6.599420639508795],[-2.273265909875578,6.453943183064602],[-2.7612077087294584,6.280535408831198],[-3.2189675406439235,6.052628048410152],[-3.591211799563379,5.804902656648146],[-3.9131527802504755,5.542313741380418],[-4.270306055700224,5.284679333947931],[-4.6173986755035,4.982454355998283],[-4.9192183448976525,4.630684299696233],[-5.185825719529155,4.219460149371302],[-5.462493749807128,3.7983269833758913],[-5.70394948532245,3.37719381738048],[-5.900132270428649,2.9659696670555484],[-6.040981449479254,2.505200438378216],[-6.1717699728833875,1.9849771156780018],[-6.257285545878397,1.4449357616368275],[-6.307588824110756,0.944530470277574],[-6.317649479757228,0.47385222592976106],[-6.322679807580464,-0.006735034088532044],[-6.423286364045182,-0.34364156688486114],[-6.624499476974617,-0.5269583567887459],[-6.896137179429355,-0.5864124508116274],[-7.137592914944678,-0.6755935918459497],[-7.358927339167057,-0.8093653033974332],[-7.590322419035907,-0.9580005384546371],[-7.816687171081522,-1.1710443753699629],[-8.02796093965743,-1.4336332906376903],[-8.193961757824214,-1.7655853155987795],[-8.329780609051582,-2.117355371900829],[-8.400205198576884,-2.4790344438733594],[-8.435417493339536,-2.8308045001754087],[-8.445478148986007,-3.167711032971738],[-8.46559946027895,-3.4996630579328265],[-8.480690443748657,-3.8068425437177145],[-8.480690443748657,-4.0942039981616425],[-8.460569132455715,-4.361747421264609],[-8.435417493339536,-4.629290844367576],[-8.38008388728394,-4.936470330152464],[-8.299598642112166,-5.2832858786192745],[-8.14868880741509,-5.644964950591803],[-7.95250602230889,-5.981871483388133],[-7.690928975500625,-6.23950589082062],[-7.409230617399415,-6.442640712065466],[-7.127532259298206,-6.56650340794647],[-6.86595521248994,-6.665593564651273],[-6.629529804797852,-6.710184135168433],[-6.398134724929003,-6.725047658674153],[-6.1516486615904435,-6.685411595992233],[-5.885041286958942,-6.621002994134111],[-5.633524895797148,-6.497140298253108],[-5.417220799398005,-6.338596047525424],[-5.251219981231221,-6.1354612262805786],[-5.100310146534144,-5.922417389365252],[-4.994673262246191,-5.773782154308048],[-4.9192183448976525,-5.699464536779446],[-4.889036377958237,-5.699464536779446],[-4.87394539448853,-5.699464536779446],[-4.818611788432935,-5.550829301722241],[-4.707944576321745,-5.253558831607833],[-4.5872167085640845,-4.678835922719978],[-4.511761791215546,-3.9752958101158793],[-4.491640479922602,-3.0190757979145335],[-4.48157982427613,-1.9389930898321845],[-4.496670807745837,-0.8688193974203154],[-4.435356867166107,0.09749326409947508],[-4.412193962305626,0.9644169141540503],[-4.226890723421774,1.7400854431502497],[-3.9720987699564776,2.4244988510880736],[-3.5761208160936717,2.9956967140669892],[-3.098239672886263,3.4812384819205224],[-2.62538885750209,3.9320986949273746],[-2.1525380421179166,4.264050719888464],[-1.6746568989105077,4.51177611165047],[-1.4241792353035116,4.6602493170182955],[-1.0535727575358067,4.79713199860586],[-0.7292920894890662,4.888387119664237],[-0.4513372311632872,4.956828460458019],[0,5],[0.030624233166456565,5.834629703659585],[0,7],[-0.5208259457447316,6.964441123742301],];
+
+module phones_module() {
+    jack_r = 3.5;
+
+    poti_r = 4;
+
+    nhp = 3;
+
+    dist = 15;
+
+    m = 30;
+
+    difference(){
+        color("blue") euro_rack_module(nhp);
+
+    translate([nhp*hp/2, m,0]) cylinder(2,jack_r,jack_r);
+    translate([nhp*hp/2, m+dist,0]) cylinder(2,jack_r,jack_r);
+        
+    translate([nhp*hp/2, m+dist*5,0]) cylinder(2,poti_r,poti_r);
+
+        
+        }
+        tm = 15;
+        ts = 6;
+translate([nhp*hp/2,m-tm+4,0]) rotate([0,0,180])engrave_label("IN", ts);
+
+        translate([nhp*hp/2,m+dist+tm-2,s]) scale([0.85,0.85,1])rotate([0,0,180]){
+linear_extrude(s/2) polygon(phones);
+mirror([1,0,0])linear_extrude(s/2) polygon(phones);
+        }
+translate([nhp*hp/2,m+dist*5-tm-3,0]) rotate([0,0,90])engrave_label("VOL", ts);
+
+        
+}
+
+module mk_vco() {
+    
+    jack_r = 6.5/2 + e;
+    poti_r = 7.5/2 + e;
+    
+    nhp = 10;
+    dist = 15;
+
+    // offset x
+    ox = 0;
+    // offset y
+    oy = 10;
+
+
+    // coordinates for user control elements
+    elems = [[ 0.16,  0.0  ],
+     [16.65,  0.0  ],
+     [33.21,  0.0  ],
+     [ 2.04, 65.98],
+     [31.24, 65.98],
+     [16.63, 15.58],
+     [ 0.0,   31.14],
+     [33.13, 31.12],
+     [ 0.09, 47.63],
+     [33.08, 47.72]];
+    // elemeints span in x direction
+    el_sx = 33.21;
+    // elements span in y direction
+    el_sy = 65.97999999999999;
+    // elements radi
+    el_r = [jack_r,jack_r,jack_r,jack_r,jack_r,poti_r,poti_r,poti_r,poti_r,poti_r];
+    // labels
+    el_l = ["CV","FM","PWM","SAW","PULSE","COARSE","FINE","FM L","PU CV","PWM L"];
+    el_ts = [6,6,5.5,4.5,4.5,5,5,5,4,4];
+
+
+    //margin x
+    mx = (nhp*hp - el_sx)/2 + ox;
+    my = (mh - el_sy)/2 + oy;
+
+
+
+    difference(){
+        color("blue") euro_rack_module(nhp);
+        
+        for(i = [0:1:len(elems)-1]) {
+            translate([mx+elems[i][0],my+elems[i][1],0]) cylinder(2,el_r[i],el_r[i]);
+        }
+
+    }
+
+    translate([nhp*hp/2, 15, 0]) rotate([0,0,180]) engrave_label("OSC",16);
+
+    for(i = [0:1:len(elems)-1]) {
+        translate([mx+elems[i][0],my+elems[i][1]-8,0]) rotate([0,0,180])engrave_label(el_l[i], el_ts[i]);
+
+        
+        
+        
+    }
+
+}
+
+
+module fancy_lfo() {
+    
+    jack_r = 6.5/2 + e;
+    switch_r = 6.5/2 + e;
+    pot_r = 7.5/2 + e;
+    
+    nhp = 10;
+    dist = 15;
+
+    // offset x
+    ox = -2;
+    // offset y
+    oy = 3;
+
+    
+// coordinates for user control elements
+elems = [[32.14,  0.  ],
+ [17.0,    1],
+ [ 3.06,  1],
+ [20.0, 13.44],
+ [25.6,  29.14],
+ [25.6,  46.47],
+ [25.6,  64.94],
+ [25.6,  82.71],
+ [15.02, 82.41],
+ [15.02, 64.6 ],
+ [15.02, 46.21],
+ [15.02, 27.79],
+ [ 7.6,  13.46],
+ [ 0.0,   13.46],];
+// elements span in x direction
+el_sx = 32.14;
+// elements span in y direction
+el_sy = 82.71;
+    // elements radi
+    el_r = [jack_r,pot_r,pot_r,pot_r,pot_r,pot_r,pot_r,pot_r,switch_r,switch_r,switch_r,switch_r,switch_r,switch_r];
+    el_l = ["OUT","RANGE","GLIDE","HP","OSC 4","OSC 3"," OSC 2","OSC 1","OHL","OHL","OHL","OHL","HP","GLIDE"];
+    el_ts = [7,5,5,6,5.5,5.5,5.5,5.5,5,5,5,5,5,5];
+    
+    
+
+    //margin x
+    mx = (nhp*hp - el_sx)/2 + ox;
+    my = (mh - el_sy)/2 + oy;
+
+
+
+    difference(){
+        color("blue") euro_rack_module(nhp);
+        
+        for(i = [0:1:len(elems)-1]) {
+            translate([mx+elems[i][0],my+elems[i][1],-0.005]) cylinder(2.01,el_r[i],el_r[i]);
+        }
+translate([mx+elems[0][0]-8,my+elems[0][1]-8,-0.005]) linear_extrude(s+0.01)polygon([[0-e,0-e],[11+e,0-e],[16+e,5-e],[16+e,16+e],[0-e,16+e]]);
+
+    }
+
+
+    translate([10, mh-19, 0])rotate([0,0,70]) engrave_label("Fancy",7);
+    translate([10, mh-46, 0])rotate([0,0,70]) engrave_label("LFO",9);
+
+    translate([41,50,2]) cube([7,70,1]);
+
+    translate([mx+elems[0][0],my+elems[0][1]-14,0]) rotate([0,0,0])engrave_label(el_l[0], el_ts[0]);
+    translate([mx+elems[1][0]-5,my+elems[1][1]-14,0]) rotate([0,0,40])engrave_label(el_l[1], el_ts[1]);
+    translate([mx+elems[2][0],my+elems[2][1]-11,0]) rotate([0,0,40])engrave_label(el_l[2], el_ts[2]);
+    
+    translate([mx+elems[3][0]+10,my+elems[3][1]+5,0]) rotate([0,0,0])engrave_label(el_l[3], el_ts[3]);
+    
+    translate([mx+elems[4][0]+-5,my+elems[4][1]+8,0]) rotate([0,0,0])engrave_label(el_l[4], el_ts[4]);
+    translate([mx+elems[5][0]+-5,my+elems[5][1]+8,0]) rotate([0,0,0])engrave_label(el_l[5], el_ts[5]);
+    translate([mx+elems[6][0]+-5,my+elems[6][1]+8,0]) rotate([0,0,0])engrave_label(el_l[6], el_ts[6]);
+    translate([mx+elems[7][0]+-5,my+elems[7][1]+8,0]) rotate([0,0,0])engrave_label(el_l[7], el_ts[7]);
+    
+    translate([mx+elems[12][0],my+elems[12][1]+10.5,0]) rotate([0,0,90])engrave_label(el_l[12], el_ts[12]);
+    translate([mx+elems[13][0],my+elems[13][1]+17,0]) rotate([0,0,90])engrave_label(el_l[13], el_ts[13]);
+
+    
+    
+    
+}
+
+
+module mk_tvca() {
+    
+    jack_r = 6.5/2 + e;
+    switch_r = 6.5/2 + e;
+    pot_r = 7.5/2 + e;
+    
+    nhp = 20;
+    echo(nhp*hp);
+    dist = 15;
+
+    // offset x
+    ox = 0;
+    // offset y
+    oy = -5;
+
+
+    // coordinates for user control elements
+    elems = [
+    [68.58, 65.39],
+     [68.58, 43.81],
+     [68.58, 26.49],
+     [68.58,  0.0  ],
+
+    [34.29, 65.39],
+     [34.29, 43.81],
+     [34.29, 26.49],
+     [34.29,  0.0  ],
+
+    [0.0, 65.39],
+     [0.0, 43.81],
+     [0.0, 26.49],
+     [0.0,  0.0  ],
+
+     ];
+    // elements span in x direction
+    el_sx = 68.58;
+    // elements span in y direction
+    el_sy = 65.39;
+    // elements radi
+    el_r = [jack_r,jack_r,pot_r,jack_r,jack_r,jack_r,pot_r,jack_r,jack_r,jack_r,pot_r,jack_r,];
+
+    //margin x
+    mx = (nhp*hp - el_sx)/2 + ox;
+    my = (mh - el_sy)/2 + oy;
+
+
+
+    difference(){
+        color("blue") euro_rack_module(nhp);
+        
+        for(i = [0:1:len(elems)-1]) {
+            translate([mx+elems[i][0],my+elems[i][1],-0.005]) cylinder(2.01,el_r[i],el_r[i]);
+        }
+
+    }
+
+    translate([nhp*hp/2, mh-15, 0])engrave_label("TRIPLE VCA",11.5);
+
+    translate([2,10,2]) cube([7,mh-35,1]);
+    translate([nhp*hp-9,10,2]) cube([7,mh-35,1]);
+
+    translate([ox+nhp*hp*0.33,my+elems[0][1],0]) rotate([0,0,90])engrave_label("IN",9);
+    translate([ox+nhp*hp*0.33,my+elems[1][1],0]) rotate([0,0,90])engrave_label("CV",9);
+    translate([ox+nhp*hp*0.33,my+elems[2][1]+4,0]) rotate([0,0,0])engrave_label("OFF",6);
+    translate([ox+nhp*hp*0.33,my+elems[2][1]-4,0]) rotate([0,0,0])engrave_label("SET",6);
+    translate([ox+nhp*hp*0.33,my+elems[3][1],0]) rotate([0,0,90])engrave_label("OUT",9);
+    
+    translate([ox+nhp*hp*0.66,my+elems[0][1],0]) rotate([0,0,90])engrave_label("IN",9);
+    translate([ox+nhp*hp*0.66,my+elems[1][1],0]) rotate([0,0,90])engrave_label("CV",9);
+    translate([ox+nhp*hp*0.66,my+elems[2][1]+4,0]) rotate([0,0,0])engrave_label("OFF",6);
+    translate([ox+nhp*hp*0.66,my+elems[2][1]-4,0]) rotate([0,0,0])engrave_label("SET",6);
+    translate([ox+nhp*hp*0.66,my+elems[3][1],0]) rotate([0,0,90])engrave_label("OUT",9);
+    
+    }
+
+
+
+module mk_vca() {
+    
+    jack_r = 6.5/2 + e;
+    switch_r = 6.5/2 + e;
+    pot_r = 7.5/2 + e;
+    
+    nhp = 7;
+    echo(nhp*hp);
+    dist = 15;
+
+    // offset x
+    ox = 0;
+    // offset y
+    oy = -5;
+
+
+    // coordinates for user control elements
+    elems = [
+    [0, 65.39],
+     [0, 43.81],
+     [0, 26.49],
+     [0,  0.0  ],
+     ];
+    // elements span in x direction
+    el_sx = 0;
+    // elements span in y direction
+    el_sy = 65.39;
+    // elements radi
+    el_r = [jack_r,jack_r,pot_r,jack_r];
+
+    //margin x
+    mx = (nhp*hp - el_sx)/2 + ox;
+    my = (mh - el_sy)/2 + oy;
+
+
+
+    difference(){
+        color("blue") euro_rack_module(nhp);
+        
+        for(i = [0:1:len(elems)-1]) {
+            translate([mx+elems[i][0],my+elems[i][1],-0.005]) cylinder(2.01,el_r[i],el_r[i]);
+        }
+
+    }
+
+    translate([nhp*hp/2, mh-15, 0])engrave_label("VCA",11.5);
+
+    translate([nhp*hp-10,10,2]) cube([8,mh-35,1]);
+
+    translate([ox+nhp*hp*0.2,my+elems[0][1],0]) rotate([0,0,90])engrave_label("IN",8);
+    translate([ox+nhp*hp*0.2,my+elems[1][1],0]) rotate([0,0,90])engrave_label("CV",8);
+    translate([ox+nhp*hp*0.2,my+elems[2][1]+4,0]) rotate([0,0,0])engrave_label("OFF",5);
+    translate([ox+nhp*hp*0.2,my+elems[2][1]-4,0]) rotate([0,0,0])engrave_label("SET",5);
+    translate([ox+nhp*hp*0.2,my+elems[3][1],0]) rotate([0,0,90])engrave_label("OUT",8);
+    
+    }
+
+module cgs_bp() {
+    jack_r = 6.5/2 + e;
+    switch_r = 6.5/2 + e;
+    pot_r = 7.5/2 + e;
+    
+    nhp = 10;
+    echo(nhp*hp);
+    dist = 15;
+
+    // offset x
+    ox = 0;
+    // offset y
+    oy = 0;
+
+    //distance right
+    dr = 20;
+    dr2 = 15;
+    
+    elems = [[ 0.0,    79.629],
+     [ 0.0,    50.546],
+     [ 0.0,    29.083],
+     [ 0.0,     0.   ]];
+    // elements span in y direction
+    el_sy = 79.629;
+    my = (mh - el_sy)/2 + oy;
+
+
+
+    difference(){
+        color("blue") euro_rack_module(nhp);
+        
+            translate([nhp*hp-dr,my,-0.005]) cylinder(2.01,pot_r,pot_r);
+            translate([nhp*hp-dr,my+29.083,-0.005]) cylinder(2.01,pot_r,pot_r);
+            translate([nhp*hp-dr,my+50.546,-0.005]) cylinder(2.01,pot_r,pot_r);
+            translate([nhp*hp-dr,my+79.629,-0.005]) cylinder(2.01,pot_r,pot_r);
+
+            // second column
+            translate([nhp*hp-dr-dr2,my,-0.005]) cylinder(2.01,jack_r,jack_r);
+            translate([nhp*hp-dr-dr2,my+33.083,-0.005]) cylinder(2.01,jack_r,jack_r);
+            translate([nhp*hp-dr-dr2,my+46.546,-0.005]) cylinder(2.01,jack_r,jack_r);
+            translate([nhp*hp-dr-dr2,my+79.629,-0.005]) cylinder(2.01,jack_r,jack_r);
+            translate([nhp*hp-dr-dr2,my+29.083/2,-0.005]) cylinder(2.01,jack_r,jack_r);
+            translate([nhp*hp-dr-dr2,my+50.546+29.083/2,-0.005]) cylinder(2.01,jack_r,jack_r);
+
+        
+        
+
+
+    }
+
+    translate([nhp*hp/2, mh-5, 0])engrave_label("DUO",8);
+    translate([nhp*hp/2, mh-14, 0])engrave_label("BAND",8.7);
+
+    lo = 7;
+
+    translate([ox+nhp*hp-dr+lo,my+elems[0][1]-lo,0]) rotate([0,0,45])engrave_label("BW1",6);
+    translate([ox+nhp*hp-dr+lo,my+elems[1][1]-lo,0]) rotate([0,0,45])engrave_label("FRQ1",6);
+
+    translate([ox+nhp*hp-dr+lo,my+elems[2][1]-lo,0]) rotate([0,0,45])engrave_label("BW2",6);
+    translate([ox+nhp*hp-dr+lo,my+elems[3][1]-lo,0]) rotate([0,0,45])engrave_label("FRQ2",6);
+
+    translate([5,my,0]) rotate([0,0,90])engrave_label("O2",7);
+    translate([5,my+29.083*0.5,0]) rotate([0,0,90])engrave_label("I2",7);
+    translate([5,my+50.546+29.083*0.5,0]) rotate([0,0,90])engrave_label("O1",7);
+    translate([5,my+79.629,0]) rotate([0,0,90])engrave_label("I1",7);
+
+    translate([5,my+47.546,0]) rotate([0,0,90])engrave_label("CI",7);
+    translate([5,my+32.083,0]) rotate([0,0,90])engrave_label("CO",7);
+
+
+}
+
+
+
+
+
+module mk_tvco() {
+    
+    jack_r = 6.5/2 + e;
+    poti_r = 7.5/2 + e;
+    
+    nhp = 30;
+    dist = 15;
+
+    // offset x
+    ox = 0.5;
+    // offset y
+    oy = 10;
+
+
+    // coordinates for user control elements
+    elems = [[ 0.16,  0.0  ],
+     [16.65,  0.0  ],
+     [33.21,  0.0  ],
+     [ 2.04, 65.98],
+     [31.24, 65.98],
+     [16.63, 15.58],
+     [ 0.0,   31.14],
+     [33.13, 31.12],
+     [ 0.09, 47.63],
+     [33.08, 47.72]];
+    // elemeints span in x direction
+    el_sx = 33.21;
+    // elements span in y direction
+    el_sy = 65.97999999999999;
+    // elements radi
+    el_r = [jack_r,jack_r,jack_r,jack_r,jack_r,poti_r,poti_r,poti_r,poti_r,poti_r];
+    // labels
+    el_l = ["CV","FM","PWM","SAW","PULSE","COARSE","FINE","FM L","PU CV","PWM L"];
+    el_ts = [6,6,5.5,4.5,4.5,5,5,5,4,4];
+
+
+    //margin x
+    mx = (10*hp - el_sx)/2 + ox;
+    my = (mh - el_sy)/2 + oy;
+
+
+
+    difference(){
+        color("blue") euro_rack_module(nhp);
+        for(j = [0:1:2]) {
+            for(i = [0:1:len(elems)-1]) {
+                translate([(mx+elems[i][0])+j*50,my+elems[i][1],0]) cylinder(2,el_r[i],el_r[i]);
+            }
+    }
+
+    }
+
+    translate([nhp*hp/2, 15, 0]) rotate([0,0,180]) engrave_label("TRIPLE OSC",16);
+        for(j = [0:1:2]) {
+
+    for(i = [0:1:len(elems)-1]) {
+        translate([mx+elems[i][0]+j*50,my+elems[i][1]-8,0]) rotate([0,0,180])engrave_label(el_l[i], el_ts[i]);
+
+        
+        
+        
+    }}
+
+}
+
+
+
+
+
+
+mk_tvco();
