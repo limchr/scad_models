@@ -21,11 +21,11 @@ msh = (h - t - rs*2)/2 + t;
 
 
 //create slice of part or print full part
-slice_part = false;
+slice_part = true;
 //number of slices
 ns = 4;
 //slice i
-si = 0;
+si = 3;
 //slice height
 sh = (si == 0) ? (h-t) / ns + t : (h-t) / ns;
 //slice z
@@ -93,6 +93,7 @@ if(!slice_part){
     case_full();
 } else{
     if((si >= ns/2)) {
+        //projection(cut = false)
         translate([w*2-t,0,sh])rotate([180,0,180]) slice_part();
     } else {
         slice_part();
