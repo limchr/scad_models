@@ -140,7 +140,7 @@ translate([s,td,0]) rotate([90,0,0]) we(th, 20, nsz, sdz, smz);
 
 
 
-case();
+//case();
 //translate([wtl,0,0])mirror([1,0,0]) case();
 
 print_case = false;
@@ -157,12 +157,23 @@ color("blue") {
     }
 }
 
-translate([100,0,0]) {
-    we(20, 20, 1, sdx, 10,flattenedge=false);
-    translate([0,20,th-2*e])rotate([180,0,0])we(20, 20, 1, sdx, 10,flattenedge=false);
-    difference() {
-        translate([-s,0,0])cube([10,20,th-2*e]);
-        translate([-s,10,th/3]) rotate([0,90,0])wsh();
-        translate([-s,10,th*2/3]) rotate([0,90,0])wsh();
+
+module middle_holder() {
+                translate([0,0,-s/2]) we(20, 20, 1, sdx, 10,flattenedge=false);
+            translate([0,20,th-2*e+s/2])rotate([180,0,0])we(20, 20, 1, sdx, 10,flattenedge=false);
+            difference() {
+                translate([-s,0,-s])cube([10,20,th+s*2]);
+                translate([-s,10,th/3]) rotate([0,90,0])wsh();
+                translate([-s,10,th*2/3]) rotate([0,90,0])wsh();
+            }
+
+    
+    }
+
+translate([0,0,0]) {
+    intersection() {
+        translate([s,0,0]) middle_holder();
+            translate([0,0,e])cube([30,20,th-2*e]);
+        
     }
 }
